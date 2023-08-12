@@ -1,4 +1,4 @@
-![keva logo](https://github.com/donuts-are-good/keva/assets/96031819/89552a8e-949c-409e-aa55-e7f20cceaa69)
+![keva logo](https://github.com/donuts-are-good/libkeva/assets/96031819/d14235af-14cf-46fc-8d74-1da8d1c521e6)
 ![donuts-are-good's followers](https://img.shields.io/github/followers/donuts-are-good?&color=555&style=for-the-badge&label=followers) ![donuts-are-good's stars](https://img.shields.io/github/stars/donuts-are-good?affiliations=OWNER%2CCOLLABORATOR&color=555&style=for-the-badge) ![donuts-are-good's visitors](https://komarev.com/ghpvc/?username=donuts-are-good&color=555555&style=for-the-badge&label=visitors)
 # libkeva
 
