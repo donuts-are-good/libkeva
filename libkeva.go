@@ -49,6 +49,18 @@ func (store *KeyValueStore) Delete(key string) {
 	delete(store.data, key)
 }
 
+func (store *KeyValueStore) GetData() map[string]interface{} {
+	store.mutex.RLock()
+	defer store.mutex.RUnlock()
+
+	dataCopy := make(map[string]interface{}, len(store.data))
+	for key, value := range store.data {
+		dataCopy[key] = value
+	}
+
+	return dataCopy
+}
+
 func (store *KeyValueStore) periodicPersist() {
 	for {
 		time.Sleep(store.saveInterval)
