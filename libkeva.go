@@ -22,6 +22,7 @@ func NewKeyValueStore(savePath string, saveInterval time.Duration) *KeyValueStor
 		data:         make(map[string]interface{}),
 		savePath:     savePath,
 		saveInterval: saveInterval,
+		lastSaved:    time.Now(),
 	}
 	go kvStore.periodicPersist()
 	return kvStore
@@ -103,6 +104,7 @@ func (store *KeyValueStore) LoadFromFile(filename string) error {
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		file, createErr := os.Create(filename)
 		if createErr != nil {
+			log.Printf("Error creating new file: %v", createErr)
 			return createErr
 		}
 		file.WriteString("{}")
@@ -112,18 +114,20 @@ func (store *KeyValueStore) LoadFromFile(filename string) error {
 
 	file, err := os.Open(filename)
 	if err != nil {
+		log.Printf("Error opening file: %v", err)
 		return err
 	}
 	defer file.Close()
 
 	data, err := io.ReadAll(file)
 	if err != nil {
+		log.Printf("Error reading from file: %v", err)
 		return err
 	}
 
 	err = json.Unmarshal(data, &store.data)
 	if err != nil {
-		return err
+		log.Printf("Error unmarshalling data: %v", err)
 	}
-	return nil
+	return err
 }
